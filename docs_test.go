@@ -2,6 +2,7 @@ package cli
 
 import (
 	"io/ioutil"
+	"strings"
 	"testing"
 )
 
@@ -74,7 +75,7 @@ func testApp() *App {
 func expectFileContent(t *testing.T, file, expected string) {
 	data, err := ioutil.ReadFile(file)
 	expect(t, err, nil)
-	expect(t, string(data), expected)
+	expect(t, strings.TrimSpace(string(data)), strings.TrimSpace(expected))
 }
 
 func TestToMarkdownFull(t *testing.T) {
